@@ -11,7 +11,7 @@ import { environment } from '../environments/environment';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'ngtemplate';
+  title = 'Hello Dojo';
   hasConfig = false;
 
   constructor(
