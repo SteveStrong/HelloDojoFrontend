@@ -14,6 +14,14 @@ export class AppComponent {
   title = 'Hello Dojo';
   hasConfig = false;
 
+
+  tiles: any[] = [
+    {text: 'One', cols: 3, rows: 1, color: 'lightblue'},
+    {text: 'Two', cols: 1, rows: 2, color: 'lightgreen'},
+    {text: 'Three', cols: 1, rows: 1, color: 'lightpink'},
+    {text: 'Four', cols: 2, rows: 1, color: '#DDBDF1'},
+  ];
+
   constructor(
     private configService: ConfigService
   ) {
@@ -36,6 +44,8 @@ export class AppComponent {
     //   this.toastr[type](title, message, options);
     // }, 10);
  }
+
+ //https://material.angular.io/components/button/examples
 
   ngOnInit() {
 
