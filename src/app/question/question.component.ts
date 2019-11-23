@@ -29,4 +29,12 @@ export class QuestionComponent implements OnInit {
     this.sub && this.sub.unsubscribe();
   }
 
+  doPostTrue(){
+    this.current = this.qService.nextQuestion()
+  }
+
+  doPostFalse(){
+    this.current = this.qService.nextQuestion()
+  }
+
 }
