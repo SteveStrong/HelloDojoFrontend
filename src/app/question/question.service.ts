@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Toast, EmitterService } from "../shared/emitter.service";
+import { Toast, EmitterService } from "../shared";
 import { HttpClient } from '@angular/common/http';
 
 import { qQuestion } from "../models";
