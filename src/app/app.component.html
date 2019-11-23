@@ -1,24 +1,24 @@
 <div class="content" role="main">
-  
-  <mat-grid-list cols="4" rowHeight="100px">
-    <mat-grid-tile
-        *ngFor="let tile of tiles"
-        [colspan]="tile.cols"
-        [rowspan]="tile.rows"
-        [style.background]="tile.color">
-      {{tile.text}}
+
+    <mat-grid-list rowHeight="30px" >
+      <mat-grid-tile>
+          <p>Steve{{ title }}</p>
+        </mat-grid-tile>
+    </mat-grid-list>
+
+  <mat-grid-list cols="2" rowHeight="30px" [style.background]="'skyblue'">
+    <mat-grid-tile>
+      <button mat-raised-button style="background-color: greenyellow;">True</button>
+    </mat-grid-tile>
+    <mat-grid-tile>
+      <button mat-raised-button style="background-color: red;color: White;">False</button>
     </mat-grid-tile>
   </mat-grid-list>
 
-  <span>{{ title }} app is running!</span>
 
-  <h3>Raised Buttons</h3>
   <div class="example-button-row">
-    <button mat-raised-button>Basic</button>
-    <button mat-raised-button color="primary">Primary</button>
-    <button mat-raised-button color="accent">Accent</button>
-    <button mat-raised-button color="warn">Warn</button>
-    <button mat-raised-button disabled>Disabled</button>
+    <button mat-raised-button style="background-color: greenyellow;">True</button>
+    <button mat-raised-button style="background-color: red;color: White;">False</button>
   </div>
 
 </div>
