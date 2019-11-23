@@ -33,11 +33,9 @@ EXPOSE 80 443
 CMD ["nginx", "-g", "daemon off;"]
 
 
-
-# docker build -t hellodojofrontend -f Dockerfile  .
-# docker run -p 3000:80 -d --name hellodojofrontend hellodojofrontend
+# docker build -t hellofrontend -f Dockerfile  .
+# docker run -p 3000:8080 -d --name hellofrontend hellofrontend
 
 # to inspect
-# docker run -it -p 3000:80  hellodojofrontend /bin/bash
-
+# docker run -it -p 3000:8080  hellofrontend /bin/bash
 

@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Toast, EmitterService } from "../shared/emitter.service";
+import { Toast, EmitterService, SubSink } from "../shared";
 
 import { QuestionService } from "./question.service";
 import { AnswerService } from "./answer.service";
@@ -11,7 +11,7 @@ import { qQuestion } from '../models';
   styleUrls: ['./question.component.css']
 })
 export class QuestionComponent implements OnInit, OnDestroy {
-  sub: any;
+  sub: SubSink = new SubSink();
   current: qQuestion = new qQuestion({question:'loading'})
 
   constructor(
@@ -21,9 +21,11 @@ export class QuestionComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
 
-    this.sub = this.qService.getQuestions$().subscribe(filename => {
+    let s1 = this.qService.getQuestions$().subscribe(filename => {
       this.current = this.qService.firstQuestion()
     })
+
+    this.sub.add(s1)
 
     //EmitterService.registerCommand(this, "RefreshDisplay", this.onRefreshDisplay);
     //EmitterService.processCommands(this);
@@ -31,7 +33,14 @@ export class QuestionComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.sub && this.sub.unsubscribe();
+    this.sub.unsubscribe()
+  }
+
+  postAndNavigate(data:any){
+    let s1 = this.aService.postAnswer$(data).subscribe(result =>{
+      this.current = this.qService.nextQuestion()
+    })
+    this.sub.add(s1)
   }
 
   doPostTrue() {
@@ -40,9 +49,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
       answer: true,
       user: 'user'
     }
-    //this.aService.postAnswer$(data).subscribe(result =>{
-      this.current = this.qService.nextQuestion()
-    //})
+    this.postAndNavigate(data)
   }
 
   doPostFalse() {
@@ -51,9 +58,7 @@ export class QuestionComponent implements OnInit, OnDestroy {
       answer: false,
       user: 'user'
     }
-    //this.aService.postAnswer$(data).subscribe(result =>{
-      this.current = this.qService.nextQuestion()
-    //})
+    this.postAndNavigate(data)
   }
 
 }
