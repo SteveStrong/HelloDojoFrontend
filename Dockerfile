@@ -27,9 +27,9 @@ RUN chmod -R -f a+w /etc/nginx && \
 EXPOSE 8080 8443
 CMD ["sh","-c","envsubst < /tmp/proxy.conf > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"]
 
-# docker build -t ngtemplate -f Dockerfile  .
-# docker run -p 3000:8080 -d --name ngtemplate ngtemplate
+# docker build -t hellofrontend -f Dockerfile  .
+# docker run -p 3000:8080 -d --name hellofrontend hellofrontend
 
 # to inspect
-# docker run -it -p 3000:8080  ngtemplate /bin/bash
+# docker run -it -p 3000:8080  hellofrontend /bin/bash
 

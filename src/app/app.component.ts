@@ -11,10 +11,7 @@ import { environment } from '../environments/environment';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  header = 'Hello Dojo';
-  footer = 'UNISYS';
   hasConfig = false;
-
 
   constructor(
     private configService: ConfigService
