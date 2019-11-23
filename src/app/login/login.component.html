@@ -1,4 +1,19 @@
-<div>Are you ready to play?</div>
-<input placeholder="Type in your name" />
-<button [routerLink]="['/question']" mat-raised-button style="background-color: greenyellow;">Start</button>
+<mat-card align="center">
+    <mat-card-title>
+        Are you ready to play?
+    </mat-card-title>
+    <mat-card-content>
+        <br />
+        <br />
 
+        <form formGroup="formData"  (submit)="questionPrep()">
+            <mat-form-field>
+                <input matInput name="userName" formControlName="userName" placeholder="What is your name?" />
+            </mat-form-field>
+        </form>
+
+    </mat-card-content>
+    <mat-card-actions>
+        <button type="submit" [routerLink]="['/question']" mat-raised-button class="buttonStart">Start</button>
+    </mat-card-actions>
+</mat-card>

@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { qQuestion } from "../models";
 
-import { Observable, of } from "rxjs";
+import { Observable, Subject, of  } from "rxjs";
 import {
   map,
   catchError
@@ -20,19 +20,25 @@ export class AnswerService {
     //EmitterService.processCommands(this);
   }
 
-  public postAnswer$(data): Observable<any> {
+  public postAnswer$(data:any): Observable<any> {
 
-    const url = `../../assets/data/`;
-    return this.http.post(url, data).pipe(
-      map(res => {
-        return data;
-      }),
-      catchError(error => {
-        const msg = JSON.stringify(error, undefined, 3);
-        Toast.error(error.message, url);
-        return of<any>();
-      })
-    );
+    // const url = `../../assets/data/`;
+    // return this.http.post(url, data).pipe(
+    //   map(res => {
+    //     return data;
+    //   }),
+    //   catchError(error => {
+    //     const msg = JSON.stringify(error, undefined, 3);
+    //     Toast.error(error.message, url);
+    //     return of<any>();
+    //   })
+    // );
+
+    let obs = new Subject<any>()
+    setTimeout( _ => {
+      obs.next("")
+    }, 500 );
+    return obs;
   }
 
 }
