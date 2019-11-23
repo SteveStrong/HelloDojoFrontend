@@ -28,8 +28,8 @@ EXPOSE 8080 8443
 CMD ["sh","-c","envsubst < /tmp/proxy.conf > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"]
 
 # docker build -t hellofrontend -f Dockerfile  .
-# docker run -p 3000:8080 -d --name hellofrontend hellofrontend
+# docker run -p 8080:8080 -d --name hellofrontend hellofrontend
 
 # to inspect
-# docker run -it -p 3000:8080  hellofrontend /bin/bash
+# docker run -it -p 8080:8080  hellofrontend /bin/bash
 
