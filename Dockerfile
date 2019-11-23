@@ -1,35 +1,43 @@
-FROM node:10.16.0-stretch-slim AS builder
+FROM node:latest AS builder
+ENV APP=/var/www
 
-WORKDIR /app
+#RUN apt-get update # && app-get install -y curl
 
-COPY package.json .
-COPY package-lock.json .
+# Create app directory
+RUN mkdir -p $APP
+WORKDIR $APP
+
+# Install app dependencies
+COPY package*.json $APP/
 
 RUN npm install
+#RUN npm rebuild node-sass
 
-COPY . .
-RUN npm run build
+# Bundle app source in this experiment the dist should be build
+# already  as well as all node modules
+COPY . $APP
+RUN npm run-script build_prod
 
-FROM nginx:1.16.0
+FROM nginx:latest
 RUN apt-get update && apt-get install -y nginx
 
+ENV APP1=/var/www
 WORKDIR /usr/share/nginx/html
 
-COPY --from=builder /app/dist/ngtemplate .
-COPY proxy1.conf /tmp/proxy.conf
 
-RUN chmod -R -f a+w /etc/nginx && \
-    chmod -R -f a+w /var/cache/nginx && \
-    (chmod -R -f a+w /var/log/nginx || :) && \
-    (chmod -R -f a+w /var/lib/nginx || :) && \
-    (chmod -R -f a+w /run || :)
+# now there is a folder in dist for angular 6
+COPY --from=builder ${APP1}/dist/ngtemplate .
+COPY proxy.conf /etc/nginx/conf.d/default.conf
 
-EXPOSE 8080 8443
-CMD ["sh","-c","envsubst < /tmp/proxy.conf > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"]
+EXPOSE 80 443
+CMD ["nginx", "-g", "daemon off;"]
 
-# docker build -t ngtemplate -f Dockerfile  .
-# docker run -p 3000:8080 -d --name ngtemplate ngtemplate
+
+
+# docker build -t hellodojofrontend -f Dockerfile  .
+# docker run -p 3000:80 -d --name hellodojofrontend hellodojofrontend
 
 # to inspect
-# docker run -it -p 3000:8080  ngtemplate /bin/bash
+# docker run -it -p 3000:80  hellodojofrontend /bin/bash
+
 
