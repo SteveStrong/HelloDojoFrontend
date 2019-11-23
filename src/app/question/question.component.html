@@ -1,0 +1,9 @@
+<div>
+    {{current.question}}
+</div>
+<div>
+    <button (click)="doPostTrue()" mat-raised-button style="background-color: greenyellow;">True</button>
+    <button (click)="doPostFalse()" mat-raised-button style="background-color: red;color: White;">False</button>
+</div>
+
+<button [routerLink]="['/login']" mat-raised-button style="background-color: grey;color: White;">Finish</button>

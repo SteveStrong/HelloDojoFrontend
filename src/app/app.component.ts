@@ -11,8 +11,10 @@ import { environment } from '../environments/environment';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'ngtemplate';
+  header = 'Hello Dojo';
+  footer = 'UNISYS';
   hasConfig = false;
+
 
   constructor(
     private configService: ConfigService
@@ -36,6 +38,8 @@ export class AppComponent {
     //   this.toastr[type](title, message, options);
     // }, 10);
  }
+
+ //https://material.angular.io/components/button/examples
 
   ngOnInit() {
 
