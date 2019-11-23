@@ -1,15 +1,18 @@
-<mat-card>
-    <mat-card-title>
-        Question No. {{current.id}}
-    </mat-card-title>
+<mat-card align="center">
+
+    <mat-card-subtitle>
+        Question No. {{current.Id}}
+    </mat-card-subtitle>
+
+    <mat-card-content>
+        <h1>{{current.question}}</h1>
+    </mat-card-content>
+    <mat-card-actions>
+        <button (click)="doPostTrue()" mat-raised-button class="buttonTrue">True</button>
+        <button (click)="doPostFalse()" mat-raised-button class="buttonFalse">False</button>
+    </mat-card-actions>
+    <mat-card-actions>
+
+        <button [routerLink]="['/login']" mat-flat-button class="buttonExit">Finish</button>
+    </mat-card-actions>
 </mat-card>
-
-<div>
-    {{current.question}}
-</div>
-<div>
-    <button (click)="doPostTrue()" mat-raised-button style="background-color: greenyellow;">True</button>
-    <button (click)="doPostFalse()" mat-raised-button style="background-color: red;color: White;">False</button>
-</div>
-
-<button [routerLink]="['/login']" mat-raised-button style="background-color: grey;color: White;">Finish</button>
