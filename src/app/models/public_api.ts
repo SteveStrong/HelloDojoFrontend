@@ -1,2 +1,2 @@
 
-export * from './m-atom';
+export * from './q-atom';

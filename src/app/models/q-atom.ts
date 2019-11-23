@@ -1,4 +1,4 @@
-export class LaAtom {
+export class qAtom {
   constructor(properties?: any) {
     properties && this.override(properties);
   }
