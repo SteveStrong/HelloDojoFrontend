@@ -18,8 +18,8 @@ RUN npm install
 COPY . $APP
 RUN npm run-script build_prod
 
-FROM nginx:latest
-RUN apt-get update && apt-get install -y nginx
+FROM nginx:stable-alpine
+# RUN apt-get update && apt-get install -y nginx
 
 ENV APP1=/var/www
 WORKDIR /usr/share/nginx/html
@@ -34,8 +34,8 @@ CMD ["nginx", "-g", "daemon off;"]
 
 
 # docker build -t hellofrontend -f Dockerfile  .
-# docker run -p 3000:8080 -d --name hellofrontend hellofrontend
+# docker run -p 8080:80 -d --name hellofrontend hellofrontend
 
 # to inspect
-# docker run -it -p 3000:8080  hellofrontend /bin/bash
+# docker run -it -p 8080:80  hellofrontend /bin/bash
 
