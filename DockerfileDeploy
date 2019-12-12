@@ -10,7 +10,7 @@ RUN chgrp -R 0 /var/cache/nginx && \
 WORKDIR /usr/share/nginx/html
 
 # move the compiled dist and nginx conf
-COPY dist/ngtemplate .
+COPY dist/HelloDoJoFrontend .
 COPY nginx.conf /etc/nginx/nginx.conf
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 

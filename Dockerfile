@@ -26,8 +26,8 @@ WORKDIR /usr/share/nginx/html
 
 
 # now there is a folder in dist for angular 6
-COPY --from=builder ${APP1}/dist/ngtemplate .
-COPY proxy.conf /etc/nginx/conf.d/default.conf
+COPY --from=builder ${APP1}/dist/HelloDoJoFrontend .
+# COPY proxy.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80 443
 CMD ["nginx", "-g", "daemon off;"]

@@ -15,7 +15,7 @@ RUN apt-get update && apt-get install -y nginx
 
 WORKDIR /usr/share/nginx/html
 
-COPY --from=builder /app/dist/ngtemplate .
+COPY --from=builder /app/dist/HelloDoJoFrontend .
 COPY proxy1.conf /tmp/proxy.conf
 
 RUN chmod -R -f a+w /etc/nginx && \
@@ -27,9 +27,9 @@ RUN chmod -R -f a+w /etc/nginx && \
 EXPOSE 8080 8443
 CMD ["sh","-c","envsubst < /tmp/proxy.conf > /etc/nginx/conf.d/default.conf && nginx -g 'daemon off;'"]
 
-# docker build -t ngtemplate -f Dockerfile  .
-# docker run -p 3000:8080 -d --name ngtemplate ngtemplate
+# docker build -t HelloDoJoFrontend -f Dockerfile  .
+# docker run -p 3000:8080 -d --name HelloDoJoFrontend HelloDoJoFrontend
 
 # to inspect
-# docker run -it -p 3000:8080  ngtemplate /bin/bash
+# docker run -it -p 3000:8080  HelloDoJoFrontend /bin/bash
 
